@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Band Name Generator</title>
+</head>
+<body>
+    <h1>Band Name Generator</h1>
+    <form>
+        <label>City Name:</label><br>
+        <input type="text" id="city"><br>
+        <label>Pet Name:</label><br>
+        <input type="text" id="pet"><br><br>
+        <button type="button" onclick="generateName()">Generate</button>
+    </form>
+    <h2 id="result"></h2>
+
+    <script>
+        function generateName() {
+            const city = document.getElementById("city").value;
+            const pet = document.getElementById("pet").value;
+            document.getElementById("result").innerText =
+                "Your band name could be: " + city + " " + pet;
+        }
+    </script>
+</body>
+</html>
