@@ -1,0 +1,37 @@
+<!-- tip_calculator/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tip Calculator</title>
+</head>
+<body>
+  <h1>Welcome to the Tip Calculator!</h1>
+  <label>Total Bill ($):</label><br>
+  <input type="number" id="bill"><br><br>
+
+  <label>Tip Percentage (10, 12, 15...):</label><br>
+  <input type="number" id="tip"><br><br>
+
+  <label>Number of People:</label><br>
+  <input type="number" id="people"><br><br>
+
+  <button onclick="calculateTip()">Calculate</button>
+  <h2 id="result"></h2>
+
+  <script>
+    function calculateTip() {
+      const bill = parseFloat(document.getElementById("bill").value);
+      const tip = parseInt(document.getElementById("tip").value);
+      const people = parseInt(document.getElementById("people").value);
+
+      if (bill && tip && people) {
+        const pay = (bill / people) * (1 + tip / 100);
+        document.getElementById("result").innerText = `Each person should pay: $${pay.toFixed(2)}\nThank you!`;
+      } else {
+        document.getElementById("result").innerText = "Please enter all values correctly.";
+      }
+    }
+  </script>
+</body>
+</html>
