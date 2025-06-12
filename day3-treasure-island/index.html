@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Treasure Island Game</title>
+  <style>
+    body { font-family: monospace; background-color: #111; color: #0f0; padding: 20px; }
+    #game-output { white-space: pre-line; margin-bottom: 20px; }
+    button { margin: 5px; padding: 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div id="game-output">
+*******************************************************************************
+          |                   |                  |                     |
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+ _________|___________| ;`-.o`"=._; ." ` '`."\ ` . "-._ /_______________|_______
+|                   | |o ;    `"-.o`"=._``  '` " ,__.--o;   |
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/_____ /
+*******************************************************************************
+Welcome to Treasure Island.
+Your mission is to find the treasure.
+  </div>
+
+  <div id="game-buttons">
+    <button onclick="startGame('left')">Go Left</button>
+    <button onclick="startGame('right')">Go Right</button>
+  </div>
+
+  <script>
+    const output = document.getElementById("game-output");
+    const buttons = document.getElementById("game-buttons");
+
+    function startGame(direction) {
+      if (direction === 'left') {
+        output.innerText += "\nYou chose left. Do you want to swim or wait?";
+        buttons.innerHTML = `
+          <button onclick="nextMove('swim')">Swim</button>
+          <button onclick="nextMove('wait')">Wait</button>
+        `;
+      } else {
+        output.innerText += "\nFall into a hole\nGame Over!";
+        buttons.innerHTML = "";
+      }
+    }
+
+    function nextMove(action) {
+      if (action === 'wait') {
+        output.innerText += "\nYou waited. Choose a door: Red, Blue, Yellow, or Another.";
+        buttons.innerHTML = `
+          <button onclick="chooseDoor('Red')">Red</button>
+          <button onclick="chooseDoor('Blue')">Blue</button>
+          <button onclick="chooseDoor('Yellow')">Yellow</button>
+          <button onclick="chooseDoor('Another')">Another</button>
+        `;
+      } else {
+        output.innerText += "\nAttacked by trout\nGame Over!";
+        buttons.innerHTML = "";
+      }
+    }
+
+    function chooseDoor(color) {
+      switch (color) {
+        case 'Red':
+          output.innerText += "\nBurned by fire.\nGame Over!";
+          break;
+        case 'Blue':
+          output.innerText += "\nEaten by beasts.\nGame Over!";
+          break;
+        case 'Yellow':
+          output.innerText += "\nYou Win!";
+          break;
+        default:
+          output.innerText += "\nGame Over!";
+      }
+      buttons.innerHTML = "";
+    }
+  </script>
+</body>
+</html>
